@@ -105,15 +105,15 @@ let list = document.getElementById("lista")
 
 
 
-const auto1 = { id: 1, marca: "Ferrari", modelo: "F12 Berlinetta"}
-const auto2 = {id: 2, marca: "Mercedes", modelo: "SL65 AMG"}
-const auto3 = {id: 3, marca: "Lancia", modelo: "Delta HF Integrale"}
-const auto4 = {id: 4, marca: "Fiat", modelo: "Abarth 595"}
-const auto5 = {id: 5, marca: "Toyota", modelo: "Supra MK4"}
-const auto6 = {id: 6, marca: "Honda", modelo: "Civic EK9"}
-const auto7 = {id: 7, marca: "Ford", modelo: "Mustang '65 Fastback"}
-const auto8 = {id: 8, marca: "Audi", modelo: "A6 TSFI"}
-const auto9 = {id: 9, marca: "Renault", modelo: "Clio Williams"}
+const auto1 = { id: 1, marca: "Ferrari", modelo: "F12 Berlinetta", cv: "742 hp"}
+const auto2 = {id: 2, marca: "Mercedes", modelo: "SL65 AMG", cv: "670 hp"}
+const auto3 = {id: 3, marca: "Lancia", modelo: "Delta HF Integrale", cv: "212 hp"}
+const auto4 = {id: 4, marca: "Fiat", modelo: "Abarth 595", cv: "165 hp"}
+const auto5 = {id: 5, marca: "Toyota", modelo: "Supra MK4", cv: "350 hp"}
+const auto6 = {id: 6, marca: "Honda", modelo: "Civic EK9", cv: "182 hp"}
+const auto7 = {id: 7, marca: "Ford", modelo: "Mustang '65 Fastback", cv: "306 hp"}
+const auto8 = {id: 8, marca: "Audi", modelo: "A6 TSFI", cv: "333 hp"}
+const auto9 = {id: 9, marca: "Renault", modelo: "Clio Williams", cv: "150 hp"}
 
 const autosDisp = [auto1, auto2, auto3, auto4, auto5, auto6, auto7, auto8, auto9]
 
@@ -138,3 +138,88 @@ function greet (){
 
 
 saludo.addEventListener("click", greet);
+
+
+
+const listaElegida = document.getElementById("lista-elegida");
+const formulario = document.getElementById("formulario");
+
+let eleccion = [];
+
+formulario.addEventListener('submit', agregarCorredor);
+document.addEventListener('DOMContentLoaded', ()=>{
+    eleccion = JSON.parse( localStorage.getItem('eleccion') ) || []
+    renderHTML()
+})
+
+let sumatoria = JSON.parse(localStorage.getItem('eleccion'))
+
+
+function agregarCorredor(evt){
+    evt.preventDefault()
+    
+    
+
+    const choice = document.getElementById("choice").value
+    
+
+    if(choice === ''){
+        
+        mostrarError("No admite vacios");
+        return;
+    }
+    
+    const choiceObj = {
+        id: Date.now(),
+        texto: choice
+    }
+
+    
+    eleccion.push(choiceObj)
+    
+
+    
+    renderHTML()
+
+    formulario.reset()
+
+}
+
+
+function renderHTML(){
+    limpiarHTML();
+      if(eleccion.length>0){
+      
+        for(let opcion of eleccion){
+          
+            const li = document.createElement('li');
+            li.textContent = opcion.texto;
+
+            listaElegida.appendChild(li);
+        }
+    }
+    sincronizarStorage()
+}
+
+function sincronizarStorage(){
+    localStorage.setItem('eleccion', JSON.stringify(eleccion));
+}
+
+function limpiarHTML(){
+    while(listaElegida.firstChild){
+        listaElegida.removeChild(listaElegida.firstChild)
+    }
+}
+
+
+
+
+function mostrarError(msg){
+    const mensajeError = document.createElement('p')
+    mensajeError.textContent = msg;
+    mensajeError.classList.add('error')
+
+    const contenido = document.querySelector('#contenido');
+    contenido.appendChild(mensajeError)
+}
+
