@@ -223,3 +223,27 @@ function mostrarError(msg){
     contenido.appendChild(mensajeError)
 }
 
+
+let test = document.getElementById("test");
+function test1(){
+    swal({
+        title: "Estas seguro?",
+        text: "Estas a punto de reiniciar la lista completa, aún deseas hacerlo?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("listo! la lista se ha reiniciado!", {
+            icon: "success",
+          });
+          localStorage.clear();
+          location.reload();
+        } else {
+          swal("Aquí no ha sucedido nada!");
+        }
+      });
+}
+
+test.addEventListener("click", test1);
