@@ -1,0 +1,12 @@
+[
+    { "id": 1, "marca": "Ferrari", "modelo": "F12 Berlinetta", "cv": "742 hp"},
+    {"id": 2, "marca": "Mercedes", "modelo": "SL65 AMG", "cv": "670 hp"},
+    {"id": 3, "marca": "Lancia", "modelo": "Delta HF Integrale", "cv": "212 hp"},
+    {"id": 4, "marca": "Fiat", "modelo": "Abarth 595", "cv": "165 hp"},
+    {"id": 5, "marca": "Toyota", "modelo": "Supra MK4", "cv": "350 hp"},
+    {"id": 6, "marca": "Honda", "modelo": "Civic EK9", "cv": "182 hp"},
+    {"id": 7, "marca": "Ford", "modelo": "Mustang '65 Fastback", "cv": "306 hp"},
+    {"id": 8, "marca": "Audi", "modelo": "A6 TSFI", "cv": "333 hp"},
+    {"id": 9, "marca": "Renault", "modelo": "Clio Williams", "cv": "150 hp"}
+    ]
+    

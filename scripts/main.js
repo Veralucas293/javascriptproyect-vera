@@ -97,49 +97,71 @@
 //     document.write("No hiciste una selección válida, por favor recargar el navegador!")
 // }
     
-let marcaAuto = document.getElementById("marca");
-let modelAuto = document.getElementById("modelo");
-let colorAuto = document.getElementById("color");
-let recap = document.getElementById("salida");
-let list = document.getElementById("lista")
+// let marcaAuto = document.getElementById("marca");
+// let modelAuto = document.getElementById("modelo");
+// let colorAuto = document.getElementById("color");
+// let recap = document.getElementById("salida");
+// let list = document.getElementById("lista")
 
 
 
-const auto1 = { id: 1, marca: "Ferrari", modelo: "F12 Berlinetta", cv: "742 hp"}
-const auto2 = {id: 2, marca: "Mercedes", modelo: "SL65 AMG", cv: "670 hp"}
-const auto3 = {id: 3, marca: "Lancia", modelo: "Delta HF Integrale", cv: "212 hp"}
-const auto4 = {id: 4, marca: "Fiat", modelo: "Abarth 595", cv: "165 hp"}
-const auto5 = {id: 5, marca: "Toyota", modelo: "Supra MK4", cv: "350 hp"}
-const auto6 = {id: 6, marca: "Honda", modelo: "Civic EK9", cv: "182 hp"}
-const auto7 = {id: 7, marca: "Ford", modelo: "Mustang '65 Fastback", cv: "306 hp"}
-const auto8 = {id: 8, marca: "Audi", modelo: "A6 TSFI", cv: "333 hp"}
-const auto9 = {id: 9, marca: "Renault", modelo: "Clio Williams", cv: "150 hp"}
+// const auto1 = { id: 1, marca: "Ferrari", modelo: "F12 Berlinetta", cv: "742 hp"}
+// const auto2 = {id: 2, marca: "Mercedes", modelo: "SL65 AMG", cv: "670 hp"}
+// const auto3 = {id: 3, marca: "Lancia", modelo: "Delta HF Integrale", cv: "212 hp"}
+// const auto4 = {id: 4, marca: "Fiat", modelo: "Abarth 595", cv: "165 hp"}
+// const auto5 = {id: 5, marca: "Toyota", modelo: "Supra MK4", cv: "350 hp"}
+// const auto6 = {id: 6, marca: "Honda", modelo: "Civic EK9", cv: "182 hp"}
+// const auto7 = {id: 7, marca: "Ford", modelo: "Mustang '65 Fastback", cv: "306 hp"}
+// const auto8 = {id: 8, marca: "Audi", modelo: "A6 TSFI", cv: "333 hp"}
+// const auto9 = {id: 9, marca: "Renault", modelo: "Clio Williams", cv: "150 hp"}
 
-const autosDisp = [auto1, auto2, auto3, auto4, auto5, auto6, auto7, auto8, auto9]
+// const autosDisp = [auto1, auto2, auto3, auto4, auto5, auto6, auto7, auto8, auto9]
 
-function capturar (){
-    recap.innerHTML = "<h2> Mi auto de ensueño es: </h2>"+"<br>"+marcaAuto.value+" "+modelAuto.value+" de color "+colorAuto.value+"<br>";
-    let title = document.createElement("h3");
-    title.innerHTML = "Una lista de ejemplo para ayudar con el test:";
-    list.appendChild(title)
-    for (const autos of autosDisp){
-        let li = document.createElement("li");
-        li.innerHTML = autos.marca+" "+autos.modelo;
-        list.appendChild(li);
+// function capturar (){
+//     recap.innerHTML = "<h2> Mi auto de ensueño es: </h2>"+"<br>"+marcaAuto.value+" "+modelAuto.value+" de color "+colorAuto.value+"<br>";
+//     let title = document.createElement("h3");
+//     title.innerHTML = "Una lista de ejemplo para ayudar con el test:";
+//     list.appendChild(title)
+//     for (const autos of autosDisp){
+//         let li = document.createElement("li");
+//         li.innerHTML = autos.marca+" "+autos.modelo;
+//         list.appendChild(li);
     
-    }
-}
+//     }
+// }
 
-let saludo = document.getElementById("saludo");
-function greet (){
-    let greet = document.createElement("h4");
-    greet.innerHTML = "Gracias por participar";
-    saludo.appendChild(greet);}
-
-
-saludo.addEventListener("click", greet);
+// let saludo = document.getElementById("saludo");
+// function greet (){
+//     let greet = document.createElement("h4");
+//     greet.innerHTML = "Gracias por participar";
+//     saludo.appendChild(greet);}
 
 
+// saludo.addEventListener("click", greet);
+
+const lista1 = document.querySelector('#listado')
+
+let btn = document.getElementById("btn");
+
+btn.addEventListener("click", () =>{
+    fetch('data.json')
+        .then( (res) => res.json())
+        .then( (data) => {
+    
+            data.forEach((producto) => {
+                const li = document.createElement('li')
+                li.innerHTML = `
+                    <h4>${producto.marca}</h4>
+                    <p>${producto.modelo}</p>
+                    <p>Cv: ${producto.cv}</p>
+                    <hr/>
+                `
+       
+                lista1.append(li)
+            })
+        })
+
+})
 
 const listaElegida = document.getElementById("lista-elegida");
 const formulario = document.getElementById("formulario");
